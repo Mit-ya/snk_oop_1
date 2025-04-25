@@ -40,7 +40,7 @@ LINKS_FILE  = "all_links.xlsx"
 
 # ───────────────────‑ Reference look‑ups ───────────────────────────────────
 PROGRESSIONS_MAP: dict[str, List[str]] = {
-    "ОО": [
+    "Школа": [
         "1-й класс",
         "2-й класс",
         "3-й класс",
@@ -89,7 +89,7 @@ def format_node_label(year: int, edu_level: str, class_name: str) -> str:
 
 def edu_level_sort_key(level: str) -> int:
     order = [
-        "ОО",
+        "Школа",
         "СПО-9",
         "СПО-11",
         "ВПО-бак",
@@ -305,8 +305,8 @@ def create_sankey_chain_from_links(
             t_node = (row.target_year, row.target_edu_level, row.target_class)
 
             # Range filter (short‑circuit demos only for school):
-            if range_filter and se == "ОО" and t_node[1] == "ОО":
-                idx = class_sort_key("ОО", t_node[2])
+            if range_filter and se == "Школа" and t_node[1] == "Школа":
+                idx = class_sort_key("Школа", t_node[2])
                 if (range_filter == "До 4 класса" and idx > 3) or (
                     range_filter == "До 9 класса" and idx > 8
                 ) or (
